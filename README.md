@@ -13,6 +13,15 @@ Risk-Engine-LLM is an AI-powered microservice that evaluates fraud risk for paym
 
 ---
 
+## 📚 API Documentation
+
+The API is documented using Swagger UI and is available at:
+
+```bash
+http://localhost:3000/docs
+
+```
+
 ## 🚀 Getting Started
 
 Install dependencies:
