@@ -1,5 +1,6 @@
 import { Request, Response, RequestHandler } from 'express';
 import { evaluateRisk, PaymentData } from '../services/riskService';
+import { generateExplanation } from '../services/explanationService';
 
 /**
  * @openapi
@@ -51,10 +52,12 @@ import { evaluateRisk, PaymentData } from '../services/riskService';
  *                   type: array
  *                   items:
  *                     type: string
+ *                 explanation:
+ *                   type: string
  *       400:
  *         description: Missing required fields
  */
-const evaluateRiskHandler: RequestHandler = (req: Request, res: Response) => {
+const evaluateRiskHandler: RequestHandler = async (req: Request, res: Response) => {
   const { amount, currency, ip, deviceFingerprint, email } = req.body;
   if (!amount || !currency || !ip || !deviceFingerprint || !email) {
     res.status(400).json({ error: 'Missing required fields' });
@@ -62,7 +65,8 @@ const evaluateRiskHandler: RequestHandler = (req: Request, res: Response) => {
   }
   const paymentData: PaymentData = { amount, currency, ip, deviceFingerprint, email };
   const result = evaluateRisk(paymentData);
-  res.json(result);
+  const explanation = await generateExplanation(result.score, result.riskLevel, result.reasons);
+  res.json({ ...result, explanation });
 };
 
 export default evaluateRiskHandler;
