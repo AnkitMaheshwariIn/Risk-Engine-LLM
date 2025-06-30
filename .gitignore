@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment
+.env
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Cursor (AI IDE)
+.cursor-history/
+.cursor-tmp/
+cursor-prompts.md
+
+# Docker
+*.local
+docker-compose.override.yml
+
+# VSCode or editor settings
+.vscode/
+.idea/
+.DS_Store
+
+# Coverage
+coverage/
