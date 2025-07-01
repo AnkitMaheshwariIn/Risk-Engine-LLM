@@ -10,4 +10,9 @@ export function trackAndScoreIpOrDevice(ip: string, deviceFingerprint: string): 
   if (deviceMap[deviceFingerprint] > 3) score += 0.15;
 
   return score;
+}
+
+export function resetTracker(): void {
+  Object.keys(ipMap).forEach(key => delete ipMap[key]);
+  Object.keys(deviceMap).forEach(key => delete deviceMap[key]);
 } 

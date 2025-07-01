@@ -1,0 +1,13 @@
+services:
+  risk-engine:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - .env
+    volumes:
+      - ./.env:/app/.env:ro
+    restart: unless-stopped

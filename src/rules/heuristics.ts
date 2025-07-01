@@ -1,6 +1,6 @@
 export function checkHighRiskEmail(email: string): boolean {
   const highRiskDomains = ['.ru', 'fraud.net'];
-  return highRiskDomains.some(domain => email.endsWith(domain));
+  return highRiskDomains.some(domain => email.toLowerCase().endsWith(domain.toLowerCase()));
 }
 
 export function checkLargeTransaction(amount: number, currency: string): boolean {
