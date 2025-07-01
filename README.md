@@ -47,3 +47,17 @@ npm install
 
 **src/utils/ipDeviceTracker.ts**
 - Provides in-memory tracking for IP addresses and device fingerprints to help identify repeat usage patterns that may indicate fraud.
+
+---
+
+## 🧭 Development Progress
+
+→ Created folder Risk-Engine-LLM
+→ Generated Express + TypeScript boilerplate with /evaluate-risk route (Cursor)
+→ Implementd fraud scoring logic (Cursor)
+→ Tested locally using sample input with Swagger document
+→ Added LLM explanation generator (Cursor)
+→ Added .env support for OPENAI_API_KEY
+→ Integrated OPENAI Chat completion API using model: 'gpt-3.5-turbo'
+
+---
