@@ -4,12 +4,40 @@ Risk-Engine-LLM is an AI-powered microservice that evaluates fraud risk for paym
 
 ---
 
-## 📁 Project Structure (So far)
+## 📁 Project Structure
 
-- `src/routes/` – API routes (e.g. `/evaluate-risk`)
-- `src/services/` – Business logic and LLM integration
-- `src/rules/` – Rule-based fraud scoring heuristics
-- `src/utils/` – Utility helpers (e.g. IP tracking)
+
+```
+src/
+├── index.ts                  # Main Express app entry point
+├── routes/
+│   └── evaluateRisk.ts       # Route handler for /evaluate-risk
+├── services/
+│   ├── riskService.ts        # Risk evaluation logic
+│   └── explanationService.ts # LLM-based explanation generator
+├── rules/
+│   └── heuristics.ts         # Fraud detection heuristics
+├── utils/
+│   ├── ipDeviceTracker.ts    # In-memory IP/device tracking
+│   ├── promptBuilder.ts      # Builds prompts for LLM
+│   └── swagger.ts            # Swagger JSDoc config
+├── __tests__/
+│   ├── riskService.test.ts   # Unit tests for riskService
+│   ├── heuristics.test.ts    # Unit tests for heuristics
+│   └── ipDeviceTracker.test.ts # Unit tests for IP/device tracker
+```
+
+- **index.ts**: Sets up Express, middleware, routes, and Swagger UI.
+- **routes/evaluateRisk.ts**: Handles POST /evaluate-risk, validates input, and returns risk assessment with LLM explanation.
+- **services/riskService.ts**: Aggregates fraud rules and tracking to compute risk score and level.
+- **services/explanationService.ts**: Calls OpenAI (or mock) to generate a human-readable explanation for the risk assessment.
+- **rules/heuristics.ts**: Contains individual fraud detection rules (e.g., high-risk email, large transaction).
+- **utils/ipDeviceTracker.ts**: Tracks repeat IPs/devices and scores them for risk.
+- **utils/promptBuilder.ts**: Dynamically builds prompts for the LLM based on risk data.
+- **utils/swagger.ts**: Modular Swagger JSDoc config for API docs.
+- **__tests__/**: Jest unit tests for core business logic and edge cases.
+
+See below for more details on testing, Docker, and API usage.
 
 ---
 
@@ -128,7 +156,7 @@ Visit `http://localhost:3000/docs` for interactive API documentation powered by 
 
 ## Swagger UI (Sample)
 
-Here’s a preview of the live API documentation served via Swagger UI:
+Here's a preview of the live API documentation served via Swagger UI:
 
 ![Swagger UI Screenshot](./docs/swagger-ui.png)
 
@@ -138,7 +166,7 @@ Here’s a preview of the live API documentation served via Swagger UI:
 
 ## Debugging
 
-Here’s a preview of the Debugger:
+Here's a preview of the Debugger:
 
 ![Debug Screenshot](./docs/debug.png)
 
@@ -146,12 +174,10 @@ Here’s a preview of the Debugger:
 
 ---
 
-
 ## 🔒 License
 
 This project is proprietary and confidential. Unauthorized use or distribution is strictly prohibited.  
 For licensing requests, contact **Ankit Maheshwari**.
-
 
 ---
 
